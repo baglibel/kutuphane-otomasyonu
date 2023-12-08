@@ -1,2 +1,2 @@
-# kutuphane-otomasyonu
-PHP ile yazılmış bir kütüphane otomasyonu.
+# Kütüphane Otomasyonu
+İnternet Programcılığı dersi için yazılmış bir proje.
