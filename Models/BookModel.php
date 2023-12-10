@@ -25,7 +25,10 @@
         //fill object from array (for create from database)
         public function Fill(array $bookArray){
             foreach ($bookArray as $key => $value) {
-                $this->{$key} = $value;
+                //check if property exists
+                if(property_exists($this, $key)){
+                    $this->{$key} = $value;
+                }
             }
             //return this class
             return $this;
