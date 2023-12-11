@@ -60,6 +60,11 @@ class UserService
         }
         return $users;
     }
+    //get user count
+    function GetUserCount(){
+        $result = $this->conn->execute_query("SELECT COUNT(*) FROM users");
+        return $result->fetch_row()[0];
+    }
 }
 ?>
 

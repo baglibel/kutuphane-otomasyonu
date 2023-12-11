@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 10 Ara 2023, 20:56:14
+-- Üretim Zamanı: 12 Ara 2023, 00:12:12
 -- Sunucu sürümü: 10.4.28-MariaDB
 -- PHP Sürümü: 8.2.4
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `ID` int(11) NOT NULL,
   `Username` varchar(20) NOT NULL,
-  `Passowrd` varchar(20) NOT NULL,
+  `Password` varchar(200) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Surname` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
@@ -64,8 +64,8 @@ CREATE TABLE `history` (
   `ID` int(11) NOT NULL,
   `BookID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
-  `StartDate` date NOT NULL,
-  `EndDate` date NOT NULL,
+  `StartDate` timestamp NULL DEFAULT current_timestamp(),
+  `EndDate` timestamp NULL DEFAULT NULL,
   `ResponsibleID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -79,7 +79,7 @@ CREATE TABLE `users` (
   `ID` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Surname` varchar(50) NOT NULL,
-  `RegistryDate` date NOT NULL
+  `RegistryDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -124,7 +124,7 @@ ALTER TABLE `admins`
 -- Tablo için AUTO_INCREMENT değeri `books`
 --
 ALTER TABLE `books`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `history`

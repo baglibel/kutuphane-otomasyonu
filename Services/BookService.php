@@ -68,10 +68,31 @@ class BookService
         }
         return $books;
     }
-    //Give book to user -todo
-    function GiveBookToUser(int $userID, int $bookID, int $responsibleID){
-        //$result = $this->conn->execute_query("UPDATE books SET IsFree = ? WHERE ID = ?", [false, $bookID]);
-        //$result = $this->conn->execute_query("INSERT INTO history (BookID, UserID, EndDate, ResponsibleID)", [false, $bookID]);
+    //give book to user
+    function GiveBookToUser(int $bookID, int $userID, int $responsibleID){
+        $this->conn->execute_query("UPDATE books SET IsFree = ? WHERE ID = ?", [false, $bookID]);
+        $this->conn->execute_query("INSERT INTO history (BookID, UserID, ResponsibleID) VALUES (?, ?, ?)", [$bookID, $userID, $responsibleID]);
+    }
+    //take book from user
+    function TakeBookFromUser(int $bookID){
+        $this->conn->execute_query("UPDATE books SET IsFree = ? WHERE ID = ?", [true, $bookID]);
+        $this->conn->execute_query("UPDATE history SET EndDate = ? WHERE BookID = ? AND EndDate is null", [date("Y-m-d H:i:s"), $bookID]);
+    }
+    //get book user
+    function GetBookUser(int $bookID){
+        $result = $this->conn->execute_query("SELECT UserID FROM history WHERE BookID = ? AND EndDate is null", [$bookID])->fetch_assoc();
+        if ($result){
+            $userService = new UserService();
+            $user = $userService->GetUserByID($result["UserID"]);
+            return $user;
+        }else{
+            return false;
+        }
+    }
+    //get book count
+    function GetBookCount(){
+        $result = $this->conn->execute_query("SELECT COUNT(*) FROM books");
+        return $result->fetch_row()[0];
     }
 }
 ?>
