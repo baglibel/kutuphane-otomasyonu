@@ -21,10 +21,11 @@
         function Fill(array $array): UserModel{
             foreach ($array as $key => $value){
                 if(property_exists($this, $key))            
-                    if ($key == "RegistryDate")
+                    if ($key == "RegistryDate"){
                         $this->RegistryDate = (new DateTime())->createFromFormat("Y-m-d H:i:s", $value);
-                    else
+                    }else{
                         $this->{$key} = $value;       
+                    }
             }
             //return this class
             return $this;

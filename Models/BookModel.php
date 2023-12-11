@@ -37,7 +37,8 @@
         //method from Stringable implements for to string "Name - Writer"
         public function __toString(): string
         {
-            return "$this->Name - $this->Writer";
+            $durum = ($this->IsFree) ? "Sahipsiz" : "Sahipli";
+            return "$this->Name - $this->Writer | $durum";
         }
     }
 

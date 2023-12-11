@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . "../../Models/BookModel.php";
+require __DIR__ . '../../Models/BookModel.php';
 
 class BookService
 {
@@ -13,8 +13,7 @@ class BookService
     //add book to database from BookModel
     function AddBook(BookModel $book)
     {
-        $query =
-            "INSERT INTO books (Name, Writer, Cover, Description, NumberOfPages, Publisher, IsFree) VALUES(?,?,?,?,?,?,?)";
+        $query = "INSERT INTO books (Name, Writer, Cover, Description, NumberOfPages, Publisher, IsFree) VALUES(?,?,?,?,?,?,?)";
         $result = $this->conn->execute_query($query, [
             $book->Name,
             $book->Writer,
@@ -38,8 +37,7 @@ class BookService
     //update book from database by id with BookModel
     function UpdateBookByID(int $id, BookModel $book)
     {
-        $query =
-            "UPDATE books SET Name = ?, Writer = ?, Cover = ?, Description = ?, NumberOfPages = ?, Publisher = ?, IsFree = ? WHERE ID = ?";
+        $query = "UPDATE books SET Name = ?, Writer = ?, Cover = ?, Description = ?, NumberOfPages = ?, Publisher = ?, IsFree = ? WHERE ID = ?";
         $result = $this->conn->execute_query($query, [
             $book->Name,
             $book->Writer,
@@ -69,6 +67,11 @@ class BookService
            array_push($books, (new BookModel())->Fill($book));
         }
         return $books;
+    }
+    //Give book to user -todo
+    function GiveBookToUser(int $userID, int $bookID, int $responsibleID){
+        //$result = $this->conn->execute_query("UPDATE books SET IsFree = ? WHERE ID = ?", [false, $bookID]);
+        //$result = $this->conn->execute_query("INSERT INTO history (BookID, UserID, EndDate, ResponsibleID)", [false, $bookID]);
     }
 }
 ?>
