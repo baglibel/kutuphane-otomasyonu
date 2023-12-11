@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . "../../Models/BookModel.php";
-require __DIR__ . "../../Data/DatabaseConnection.php";
 
 class BookService
 {
@@ -40,7 +39,7 @@ class BookService
     function UpdateBookByID(int $id, BookModel $book)
     {
         $query =
-            "UPDATE books SET Name = ?, Writer = ?, Cover = ?, Description = ?, NumberOfPages = ?, Publisher = ?, IsFree = ?";
+            "UPDATE books SET Name = ?, Writer = ?, Cover = ?, Description = ?, NumberOfPages = ?, Publisher = ?, IsFree = ? WHERE ID = ?";
         $result = $this->conn->execute_query($query, [
             $book->Name,
             $book->Writer,
@@ -49,6 +48,7 @@ class BookService
             $book->NumberOfPages,
             $book->Publisher,
             $book->IsFree,
+            $id
         ]);
         return $result;
     }

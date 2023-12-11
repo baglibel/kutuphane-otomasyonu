@@ -1,4 +1,5 @@
 <?php
+    require __DIR__.'/../Data/DatabaseConnection.php';
     if(isset($_POST["AddBook"])){
         require_once '../Services/BookService.php';
         $bookService = new BookService();
@@ -7,7 +8,6 @@
         $message = "Kitap eklendi.";
     }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
