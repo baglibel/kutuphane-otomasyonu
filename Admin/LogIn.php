@@ -1,11 +1,13 @@
 <?php
-    require_once 'SessionControl.php';
-    if(isset($_POST["AddUser"])){
-      require_once '../Services/UserService.php';
-      $userService = new UserService();
-      $user = (new UserModel())->Fill($_POST);
-      $userService->AddUser($user);
-      $message = "Üye eklendi.";
+    if(isset($_POST["LogIn"])){
+        require_once '../Services/AdminService.php';
+        $adminService = new AdminService();
+        $admin = (new AdminModel())->Fill($_POST);
+        $result = $adminService->LogIn($admin);
+        if ($result[0]){
+            header("Refresh:2; url=Index.php");
+        }
+        $message = $result[1];
     }
 ?>
 
@@ -20,37 +22,37 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <title>Üye Ekle</title>
+    <title>Giriş Yap</title>
     <link rel="stylesheet" href="../Assets/Styles/style.css">
   </head>
   <body>
     <div class="contatiner">
       <div class="add-book">
-        <h1 class="text-white" style="text-align: center">Üye Ekle</h1>
-        <form class="form text-white" action="AddUser.php" method="post">
+        <h1 class="text-white" style="text-align: center">Giriş Yap</h1>
+        <form class="form text-white" action="LogIn.php" method="post">
           <div class="form-group">
-            <label>Adı:</label>
+            <label>Kullanıcı adı:</label>
             <input
               type="text"
               class="form-control"
-              placeholder="Adı"
-              name="Name"
+              placeholder="Kullanıcı adı"
+              name="Username"
               required
             />
           </div>
           <div class="form-group">
-            <label>Soyadı:</label>
+            <label>Şifre:</label>
             <input
-              type="text"
+              type="password"
               class="form-control"
-              placeholder="Soyadı"
-              name="Surname"
+              placeholder="Şifre"
+              name="Password"
               required
             />
           </div>
           <div class="form-group d-flex justify-content-center">
-            <button name="AddUser" type="submit" class="btn btn-primary mt-3 w-50">
-              Ekle
+            <button name="LogIn" type="submit" class="btn btn-primary mt-3 w-50">
+              Giriş yap
             </button>
         </div>
     </form>

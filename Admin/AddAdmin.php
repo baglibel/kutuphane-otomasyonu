@@ -1,16 +1,17 @@
 <?php
-    require __DIR__.'/../Data/DatabaseConnection.php';
+    require_once 'SessionControl.php';
+    require_once '../Services/AdminService.php';
+    $adminService = new AdminService();
+    $adminService->checkAdminRank($adminObject, Rank::Yönetici);
     if(isset($_POST["AddAdmin"])){
-        require_once '../Services/AdminService.php';
-        $adminService = new AdminService();
-        $admin = (new AdminModel())->Fill($_POST);
-        $adminService->AddAdmin($admin);
-        $message = "Admin eklendi.";
+      $admin = (new AdminModel())->Fill($_POST);
+      $adminService->AddAdmin($admin);
+      $message = "Admin eklendi.";
     }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

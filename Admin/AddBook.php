@@ -1,16 +1,16 @@
 <?php
-    require __DIR__.'/../Data/DatabaseConnection.php';
+    require_once 'SessionControl.php';
     if(isset($_POST["AddBook"])){
-        require_once '../Services/BookService.php';
-        $bookService = new BookService();
-        $book = (new BookModel())->Fill($_POST);
-        $bookService->AddBook($book);
-        $message = "Kitap eklendi.";
+      require_once '../Services/BookService.php';
+      $bookService = new BookService();
+      $book = (new BookModel())->Fill($_POST);
+      $bookService->AddBook($book);
+      $message = "Kitap eklendi.";
     }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

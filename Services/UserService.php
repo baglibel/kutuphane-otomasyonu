@@ -1,5 +1,6 @@
 <?php
-require __DIR__ . "../../Models/UserModel.php";
+require_once __DIR__.'../../Data/DatabaseConnection.php';
+require_once __DIR__ . "../../Models/UserModel.php";
 
 class UserService
 {
