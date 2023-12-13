@@ -1,4 +1,16 @@
-<?php require_once 'SessionControl.php'; ?>
+<?php
+  require_once 'SessionControl.php';
+  require_once '../Services/UserService.php';
+  $userService = new UserService();
+  if (isset($_GET["action"]) && isset($_GET["id"])){
+    $id = $_GET["id"];
+    if ($_GET["action"] == "delete"){
+      $userService->DeleteUserByID($id);
+    }
+  }
+  $users = $userService->GetUsers();
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,7 +42,7 @@
           <h6>Kütüphane</h6>
         </nav>
       </header>
-      <a class="active" href="Index.php">
+      <a href="Index.php">
         <i>home</i>
         <div>Ana Sayfa</div>
       </a>
@@ -38,7 +50,7 @@
         <i>book</i>
         <div>Kitaplar</div>
       </a>
-      <a href="Users.php">
+      <a href="Users.php" class="active">
         <i>person</i>
         <div>Üyeler</div>
       </a>
@@ -64,8 +76,41 @@
       </a>
     </nav>
     <main class="responsive center-align">
-      <h2 class="center-align">Ana Sayfa</h2>
-      <a href="LogOut.php">Çıkış yap</a>
+      <h2 class="center-align">Üyeler</h2>
+      <table class="stripes top-margin">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>Kayıt tarihi</th>
+            <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($users as $user) {
+          $tarih = $user->RegistryDate->format('Y-m-d H:i:s');
+            echo "<tr>
+            <td>$user->ID</td>
+            <td>$user->Name</td>
+            <td>$user->Surname</td>
+            <td>$tarih</td>
+            <td style=\"width:25%\">
+              <button>
+                <i>edit</i>
+                <span>Düzenle</span>
+              </button>
+              <button onclick='location.href=\"Users.php?action=delete&id=$user->ID\"';>
+                <i>remove</i>
+                <span>Sil</span>
+              </button>
+            </td>
+          </tr>";
+        } 
+        ?>
+        </tbody>
+      </table>
     </main>
   </body>
 </html>

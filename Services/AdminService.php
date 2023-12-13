@@ -100,7 +100,7 @@ class AdminService
             //if not logged return index page
             header("Refresh:3; url=Login.php");
             die('Bu sayfayı görmek için giriş yapmanız lazım.<br>
-            3 saniye içinde <a href="Index.php"> giriş sayfası\'na</a> yönlendirileceksiniz.');
+            3 saniye içinde <a href="Login.php"> giriş sayfası\'na</a> yönlendirileceksiniz.');
         }
     }
     //Check admin has the rank

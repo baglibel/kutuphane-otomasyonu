@@ -1,4 +1,16 @@
-<?php require_once 'SessionControl.php'; ?>
+<?php
+  require_once 'SessionControl.php';
+  require_once '../Services/BookService.php';
+  $bookService = new BookService();
+  if (isset($_GET["action"]) && isset($_GET["id"])){
+    $id = $_GET["id"];
+    if ($_GET["action"] == "delete"){
+      $bookService->DeleteBookByID($id);
+    }
+  }
+  $books = $bookService->GetBooks();
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,11 +42,11 @@
           <h6>Kütüphane</h6>
         </nav>
       </header>
-      <a class="active" href="Index.php">
+      <a href="Index.php">
         <i>home</i>
         <div>Ana Sayfa</div>
       </a>
-      <a href="Books.php">
+      <a href="Books.php" class="active">
         <i>book</i>
         <div>Kitaplar</div>
       </a>
@@ -64,8 +76,47 @@
       </a>
     </nav>
     <main class="responsive center-align">
-      <h2 class="center-align">Ana Sayfa</h2>
-      <a href="LogOut.php">Çıkış yap</a>
+      <h2 class="center-align">Kitaplar</h2>
+      <table class="stripes top-margin">
+        <thead>
+          <tr>
+            <th>Adı</th>
+            <th>Yazarı</th>
+            <th>Sayfa sayısı</th>
+            <th>Yayımcı</th>
+            <th>Durum</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($books as $book) {
+          $durum = $book->GetState();
+            echo "<tr>
+            <td>$book->Name</td>
+            <td>$book->Writer</td>
+            <td>$book->NumberOfPages</td>
+            <td>$book->Publisher</td>
+            <td>$durum</td>
+            <td style=\"width:35%\">
+            <button>
+                <i>frame_inspect</i>
+                <span>İncele</span>
+              </button>
+              <button>
+                <i>edit</i>
+                <span>Düzenle</span>
+              </button>
+              <button onclick='location.href=\"Books.php?action=delete&id=$book->ID\"';>
+                <i>remove</i>
+                <span>Sil</span>
+              </button>
+            </td>
+          </tr>";
+        } 
+        ?>
+        </tbody>
+      </table>
     </main>
   </body>
 </html>

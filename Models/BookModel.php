@@ -33,11 +33,14 @@
             //return this class
             return $this;
         }
+        public function GetState(){
+            return ($this->IsFree) ? "Sahipsiz" : "Sahipli";
+        }
         
         //method from Stringable implements for to string "Name - Writer"
         public function __toString(): string
         {
-            $durum = ($this->IsFree) ? "Sahipsiz" : "Sahipli";
+            $durum = $this->GetState();
             return "$this->Name - $this->Writer | $durum";
         }
     }

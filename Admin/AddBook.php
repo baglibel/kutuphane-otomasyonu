@@ -10,97 +10,127 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kütüphane</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/beercss@3.4.9/dist/cdn/beer.min.css"
       rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
     />
-    <title>Kitap Ekle</title>
-    <link rel="stylesheet" href="../Assets/Styles/style.css">
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/beercss@3.4.9/dist/cdn/beer.min.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.0/dist/cdn/material-dynamic-colors.min.js"
+    ></script>
   </head>
-  <body>
-    <div class="contatiner">
-      <div class="add-book">
-        <h1 class="text-white" style="text-align: center">Kitap Ekle</h1>
-        <form class="form text-white" action="AddBook.php" method="post">
-          <div class="form-group">
+  <body class="dark brown9">
+    <nav class="left drawer">
+      <header>
+        <nav>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/224/224595.png"
+            class="circle"
+            alt="library logo"
+          />
+          <h6>Kütüphane</h6>
+        </nav>
+      </header>
+      <a href="Index.php">
+        <i>home</i>
+        <div>Ana Sayfa</div>
+      </a>
+      <a href="Books.php">
+        <i>book</i>
+        <div>Kitaplar</div>
+      </a>
+      <a href="Users.php">
+        <i>person</i>
+        <div>Üyeler</div>
+      </a>
+      <a>
+        <i>Analytics</i>
+        <div>İstatistikler</div>
+      </a>
+      <a>
+        <i>priority_high</i>
+        <div>Uyarılar</div>
+      </a>
+      <div class="divider"></div>
+      <label>Üye İşlemleri</label>
+      <a href="AddUser.php">
+        <i>person_add</i>
+        <div>Üye Ekle</div>
+      </a>
+      <div class="divider"></div>
+      <label>Kitap İşlemleri</label>
+      <a class="active" href="AddBook.php">
+        <i>book</i>
+        <div>Kitap Ekle</div>
+      </a>
+    </nav>
+    <main class="responsive center-align" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+      <h2 class="center-align">Kitap Ekle</h2>
+      <form style="width: 50%; margin-top: 30px" class="responsive" action="AddBook.php" method="post">
+          <div class="field border round label">
+            <input
+            type="text"
+            name="Name"
+            required
+            />
             <label>Kitap adı:</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Kitap adı"
-              name="Name"
-              required
-            />
           </div>
-          <div class="form-group">
+          <div class="field border round label">
+            <input
+            type="text"
+            name="Writer"
+            required
+            />
             <label>Yazar:</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Yazar"
-              name="Writer"
-              required
-            />
           </div>
-          <div class="form-group">
+          <div class="field border round label">
+            <input
+            type="url"
+            name="Cover"
+            required
+            />
             <label>Kapak (URL):</label>
-            <input
-              type="url"
-              class="form-control"
-              placeholder="Kapak (URL)"
-              name="Cover"
-              required
-            />
           </div>
-          <div class="form-group">
+          <div class="field border round label"> 
+            <input
+            type="text"
+            name="Description"
+            required
+            />
             <label>Açıklama:</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Açıklama"
-              name="Description"
-              required
-            />
           </div>
-          <div class="form-group">
+          <div class="field border round label">
+            <input
+            type="number"
+            name="NumberOfPages"
+            required
+            />
             <label>Sayfa sayısı:</label>
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Sayfa sayısı"
-              name="NumberOfPages"
-              required
-            />
           </div>
-          <div class="form-group">
+          <div class="field border round label">
+            <input
+            type="text"
+            name="Publisher"
+            required
+            />
             <label>Yayın evi:</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Yayın evi"
-              name="Publisher"
-              required
-            />
           </div>
-          <div class="form-group d-flex justify-content-center">
-            <button name="AddBook" type="submit" class="btn btn-primary mt-3 w-50">
+          <div>
+            <button name="AddBook" type="submit">
               Ekle
             </button>
         </div>
-    </form>
-        <?php if (isset($message)) echo $message; ?>
-      </div>
-    </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
+      </form>
+      <?php if (isset($message)) echo $message; ?>
+    </main>
   </body>
 </html>

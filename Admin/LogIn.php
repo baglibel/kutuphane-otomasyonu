@@ -16,53 +16,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
     <title>Giriş Yap</title>
-    <link rel="stylesheet" href="../Assets/Styles/style.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/beercss@3.4.9/dist/cdn/beer.min.css"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/beercss@3.4.9/dist/cdn/beer.min.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.0/dist/cdn/material-dynamic-colors.min.js"
+    ></script>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-image: url('../Assets/Images/background.png');
+        color: white;
+      }
+      .container {
+        flex: display;
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+        border-radius: 10%;
+      }
+    </style>
   </head>
   <body>
-    <div class="contatiner">
-      <div class="add-book">
-        <h1 class="text-white" style="text-align: center">Giriş Yap</h1>
-        <form class="form text-white" action="LogIn.php" method="post">
-          <div class="form-group">
-            <label>Kullanıcı adı:</label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Kullanıcı adı"
-              name="Username"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label>Şifre:</label>
-            <input
-              type="password"
-              class="form-control"
-              placeholder="Şifre"
-              name="Password"
-              required
-            />
-          </div>
-          <div class="form-group d-flex justify-content-center">
-            <button name="LogIn" type="submit" class="btn btn-primary mt-3 w-50">
-              Giriş yap
-            </button>
+    <div class="container brown9">
+      <h1 class="text-white" style="text-align: center">Giriş Yap</h1>
+      <form class="form text-white" action="LogIn.php" method="post">
+        <div class="field border round label">
+          <input type="text" class="form-control" name="Username" required />
+          <label>Kullanıcı adı</label>
         </div>
-    </form>
+        <div class="field border round label">
+          <input
+            type="password"
+            class="form-control"
+            name="Password"
+            required
+          />
+          <label>Şifre</label>
+        </div>
+        <div class="form-group d-flex justify-content-center">
+          <button name="LogIn" type="submit" class="btn btn-primary mt-3 w-50">
+            Giriş yap
+          </button>
+        </div>
         <?php if (isset($message)) echo $message; ?>
-      </div>
+
+      </form>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
