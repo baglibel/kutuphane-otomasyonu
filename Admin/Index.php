@@ -1,4 +1,8 @@
-<?php require_once 'SessionControl.php'; ?>
+<?php 
+  require_once 'SessionControl.php';
+  require_once 'NavBar.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,53 +23,9 @@
     ></script>
   </head>
   <body class="dark brown9">
-    <nav class="left drawer">
-      <header>
-        <nav>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/224/224595.png"
-            class="circle"
-            alt="library logo"
-          />
-          <h6>Kütüphane</h6>
-        </nav>
-      </header>
-      <a class="active" href="Index.php">
-        <i>home</i>
-        <div>Ana Sayfa</div>
-      </a>
-      <a href="Books.php">
-        <i>book</i>
-        <div>Kitaplar</div>
-      </a>
-      <a href="Users.php">
-        <i>person</i>
-        <div>Üyeler</div>
-      </a>
-      <a>
-        <i>Analytics</i>
-        <div>İstatistikler</div>
-      </a>
-      <a>
-        <i>priority_high</i>
-        <div>Uyarılar</div>
-      </a>
-      <div class="divider"></div>
-      <label>Üye İşlemleri</label>
-      <a href="AddUser.php">
-        <i>person_add</i>
-        <div>Üye Ekle</div>
-      </a>
-      <div class="divider"></div>
-      <label>Kitap İşlemleri</label>
-      <a href="AddBook.php">
-        <i>book</i>
-        <div>Kitap Ekle</div>
-      </a>
-    </nav>
-    <main class="responsive center-align">
-      <h2 class="center-align">Ana Sayfa</h2>
-      <a href="LogOut.php">Çıkış yap</a>
+    <?php NavBar( $adminObject);?>
+    <main class="responsive center-align" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+      <h2 class="center-align">Kütüphane Otomasyon Sistemi</h2>
     </main>
   </body>
 </html>

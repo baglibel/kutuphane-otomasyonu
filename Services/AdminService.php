@@ -104,12 +104,17 @@ class AdminService
         }
     }
     //Check admin has the rank
-    function checkAdminRank(AdminModel $admin, Rank $rank){
+    function checkAdminRank(AdminModel $admin, Rank $rank, bool $return = false){
         if ($admin->Rank != $rank ){
+            if ($return){
+                return false;
+            }
             header("Refresh:3; url=Index.php");
-              die('Bu sayfayı görmek için '.($rank->name).' olmanız lazım.<br>
+            die('Bu sayfayı görmek için '.($rank->name).' olmanız lazım.<br>
               3 saniye içinde <a href="Index.php"> Ana sayfaya</a> yönlendirileceksiniz.');
-          }
+        }else{
+            return true;
+        }
     }
 }
 ?>

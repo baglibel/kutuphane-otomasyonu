@@ -1,7 +1,6 @@
 <?php
     require_once 'SessionControl.php';
-    require_once '../Services/AdminService.php';
-    $adminService = new AdminService();
+    require_once 'NavBar.php';
     $adminService->checkAdminRank($adminObject, Rank::Yönetici);
     if(isset($_POST["AddAdmin"])){
       $admin = (new AdminModel())->Fill($_POST);
@@ -11,94 +10,83 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kütüphane</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/beercss@3.4.9/dist/cdn/beer.min.css"
       rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
     />
-    <title>Admin Ekle</title>
-    <link rel="stylesheet" href="../Assets/Styles/style.css">
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/beercss@3.4.9/dist/cdn/beer.min.js"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.0/dist/cdn/material-dynamic-colors.min.js"
+    ></script>
   </head>
-  <body>
-    <div class="contatiner">
-      <div class="add-book">
-        <h1 class="text-white" style="text-align: center">Admin Ekle</h1>
-        <form class="form text-white" action="AddAdmin.php" method="post">
-          <div class="form-group">
-            <label>Adı:</label>
+  <body class="dark brown9">
+  <?php NavBar( $adminObject);?>
+    <main class="responsive center-align" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+      <h2 class="center-align">Admin Ekle</h2>
+      <form style="width: 50%; margin-top: 30px" class="responsive" action="AddAdmin.php" method="post">
+          <div class="field border round label">
             <input
-              type="text"
-              class="form-control"
-              placeholder="Adı"
-              name="Name"
-              required
+            type="text"
+            name="Name"
+            required
             />
+            <label>Ad</label>
           </div>
-          <div class="form-group">
-            <label>Soyadı:</label>
+          <div class="field border round label">
             <input
-              type="text"
-              class="form-control"
-              placeholder="Soyadı"
-              name="Surname"
-              required
+            type="text"
+            name="Surname"
+            required
             />
+            <label>Soyad</label>
           </div>
-          <div class="form-group">
-            <label>Kullanıcı adı:</label>
+          <div class="field border round label">
             <input
-              type="text"
-              class="form-control"
-              placeholder="Kullanıcı adı"
-              name="Username"
-              required
+            type="text"
+            name="Username"
+            required
             />
+            <label>Kullanıcı adı</label>
           </div>
-          <div class="form-group">
-            <label>Şifre:</label>
+          <div class="field border round label">
             <input
-              type="password"
-              class="form-control"
-              placeholder="Şifre"
-              name="Password"
-              required
+            type="password"
+            name="Password"
+            required
             />
+            <label>Şifre</label>
           </div>
-          <div class="form-group">
-            <label>Email:</label>
+          <div class="field border round label">
             <input
-              type="email"
-              class="form-control"
-              placeholder="Email"
-              name="Email"
-              required
+            type="email"
+            name="Email"
+            required
             />
+            <label>Email</label>
           </div>
-          <div class="form-group">
-            <label>Yetki:</label>
+          <div class="field border round label">
             <select class="form-select" name="Rank" required>
               <option value="0">Moderatör</option>
               <option value="1">Yönetici</option>
             </select>
+            <label>Yetki:</label>
           </div>
-          <div class="form-group d-flex justify-content-center">
-            <button name="AddAdmin" type="submit" class="btn btn-primary mt-3 w-50">
+          <div>
+            <button name="AddAdmin" type="submit">
               Ekle
             </button>
         </div>
-    </form>
-        <?php if (isset($message)) echo $message; ?>
-      </div>
-    </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
+      </form>
+      <?php if (isset($message)) echo $message; ?>
+    </main>
   </body>
 </html>

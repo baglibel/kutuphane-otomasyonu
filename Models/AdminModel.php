@@ -37,11 +37,11 @@
             return $this;
         }
         
-        //method from Stringable implements for to string "Name Surname @Username (Rank)"
+        //method from Stringable implements for to string "Name Surname @Username"
         public function __toString(): string
         {
             $rank = $this->Rank->name;
-            return "$this->Name $this->Surname @$this->Username ($rank)";
+            return "$this->Name $this->Surname @$this->Username";
         }
     }
     enum Rank: int {

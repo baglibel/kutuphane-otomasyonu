@@ -48,7 +48,8 @@ class UserService
     {
         $query = "SELECT * FROM users WHERE ID = ?";
         $result = $this->conn->execute_query($query, [$id]);
-        return (new UserModel())->Fill($result->fetch_assoc());
+        $result = $result->fetch_assoc();
+        return ($result) ? (new UserModel())->Fill($result) : false;
     }
     //get users from databse, array of UserModel
     function GetUsers()

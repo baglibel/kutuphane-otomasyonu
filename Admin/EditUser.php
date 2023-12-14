@@ -1,12 +1,20 @@
 <?php
     require_once 'SessionControl.php';
     require_once 'NavBar.php';
-    if(isset($_POST["AddUser"])){
-      require_once '../Services/UserService.php';
-      $userService = new UserService();
+    require_once '../Services/UserService.php';
+    $userService = new UserService();
+    if (isset($_GET["id"])){
+      $id = $_GET["id"];
+      $user = $userService->GetUserByID($id);
+      if (!$user){
+        header("Location: Users.php");
+      }
+    }
+    if(isset($_POST["EditUser"]) && isset($_GET["id"])){
+      $id = $_GET["id"];
       $user = (new UserModel())->Fill($_POST);
-      $userService->AddUser($user);
-      $message = "Üye eklendi.";
+      $userService->UpdateUserByID($id, $user);
+      header("Location: Users.php");
     }
 ?>
 <!DOCTYPE html>
@@ -31,20 +39,23 @@
   <body class="dark brown9">
   <?php NavBar( $adminObject);?>
     <main class="responsive center-align" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-      <h2 class="center-align">Üye Ekle</h2>
-      <form style="width: 50%; margin-top: 30px" class="responsive" action="AddUser.php" method="post">
+      <h2 class="center-align">Üye Düzenle</h2>
+      <form style="width: 50%; margin-top: 30px" class="responsive" action="EditUser.php?id=<?php echo $id;?>" method="post">
         <div class="field border round label">
-          <input type="text" name="Name" required />
+          <input type="text" name="ID" value="<?php echo $id;?>" required disabled/>
+          <label>ID</label>
+        </div>
+        <div class="field border round label">
+          <input type="text" name="Name" value="<?php echo $user->Name;?>" required />
           <label>Adı</label>
         </div>
         <div class="field border round label">
-          <input type="text" name="Surname" required/>
+          <input type="text" name="Surname" value="<?php echo $user->Surname;?>" required/>
           <label>Soyadı</label>
         </div>
-          <button style="margin-bottom: 10px;" name="AddUser" type="submit">Ekle</button>
+          <button style="margin-bottom: 10px;" name="EditUser" type="submit">Düzenle</button>
         </div>
       </form>
-      <?php if (isset($message)) echo $message; ?>
     </main>
   </body>
 </html>

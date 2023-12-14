@@ -1,14 +1,23 @@
 <?php
     require_once 'SessionControl.php';
     require_once 'NavBar.php';
-    if(isset($_POST["AddBook"])){
-      require_once '../Services/BookService.php';
-      $bookService = new BookService();
+    require_once '../Services/BookService.php';
+    $bookService = new BookService();
+    if (isset($_GET["id"])){
+      $id = $_GET["id"];
+      $book = $bookService->GetBookByID($id);
+      if (!$book){
+        header("Location: Books.php");
+      }
+    }
+    if(isset($_POST["EditBook"]) && isset($_GET["id"])){
+      $id = $_GET["id"];
       $book = (new BookModel())->Fill($_POST);
-      $bookService->AddBook($book);
-      $message = "Kitap eklendi.";
+      $bookService->UpdateBookByID($id, $book);
+      header("Location: Books.php");
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,12 +41,23 @@
   <body class="dark brown9">
   <?php NavBar( $adminObject);?>
     <main class="responsive center-align" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-      <h2 class="center-align">Kitap Ekle</h2>
-      <form style="width: 50%; margin-top: 30px" class="responsive" action="AddBook.php" method="post">
+      <h2 class="center-align">Kitap Düzenle</h2>
+      <form style="width: 50%; margin-top: 30px" class="responsive" action="EditBook.php?id=<?php echo $id;?>" method="post">
+          <div class="field border round label">
+            <input
+            type="text"
+            name="ID"
+            value="<?php echo $id ?>"
+            required
+            disabled
+            />
+            <label>ID</label>
+          </div>   
           <div class="field border round label">
             <input
             type="text"
             name="Name"
+            value="<?php echo $book->Name ?>"
             required
             />
             <label>Kitap adı</label>
@@ -46,6 +66,7 @@
             <input
             type="text"
             name="Writer"
+            value="<?php echo $book->Writer ?>"
             required
             />
             <label>Yazar</label>
@@ -54,20 +75,24 @@
             <input
             type="url"
             name="Cover"
+            value="<?php echo $book->Cover ?>"
             required
             />
             <label>Kapak (URL)</label>
           </div>
           <div class="field textarea round border label">
-            <textarea type="text"
+            <textarea 
+            type="textarea"
             name="Description"
-            required></textarea>
+            required><?php echo $book->Description ?>
+          </textarea>
             <label>Açıklama</label>
           </div>
           <div class="field border round label">
             <input
             type="number"
             name="NumberOfPages"
+            value="<?php echo $book->NumberOfPages ?>"
             required
             />
             <label>Sayfa sayısı</label>
@@ -76,17 +101,17 @@
             <input
             type="text"
             name="Publisher"
+            value="<?php echo $book->Publisher ?>"
             required
             />
             <label>Yayın evi</label>
           </div>
           <div>
-            <button name="AddBook" type="submit">
-              Ekle
+            <button name="EditBook" type="submit">
+              Düzenle
             </button>
         </div>
       </form>
-      <?php if (isset($message)) echo $message; ?>
     </main>
   </body>
 </html>
