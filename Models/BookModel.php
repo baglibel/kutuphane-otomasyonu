@@ -1,5 +1,5 @@
 <?php
-
+    require_once '../Services/BookService.php';
     class BookModel implements Stringable{
         public int $ID;
         public string $Name;
@@ -34,7 +34,13 @@
             return $this;
         }
         public function GetState(){
-            return ($this->IsFree) ? "Sahipsiz" : "Sahipli";
+            if($this->IsFree){
+                return "Sahipsiz";
+            }else{
+                $bookService = new BookService();
+                $user = $bookService->GetBookUser($this->ID);
+                return "Sahipli - ". $user;
+            }
         }
         
         //method from Stringable implements for to string "Name - Writer"

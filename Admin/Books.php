@@ -58,8 +58,8 @@
             <td>$book->Publisher</td>
             <td>$durum</td>
             <td style=\"width:35%\">
-            <button>
-                <i>frame_inspect</i>
+            <button onclick='location.href=\"Book.php?id=$book->ID\"';>
+              <i>frame_inspect</i>
                 <span>İncele</span>
               </button>
               <button onclick='location.href=\"EditBook.php?id=$book->ID\"';>

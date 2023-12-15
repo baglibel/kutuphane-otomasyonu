@@ -6,9 +6,8 @@
     if (isset($_GET["id"])){
       $id = $_GET["id"];
       $user = $userService->GetUserByID($id);
-      if (!$user){
+      if (!$user)
         header("Location: Users.php");
-      }
     }
     if(isset($_POST["EditUser"]) && isset($_GET["id"])){
       $id = $_GET["id"];

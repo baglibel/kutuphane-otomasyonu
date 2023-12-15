@@ -6,9 +6,8 @@
     if (isset($_GET["id"])){
       $id = $_GET["id"];
       $book = $bookService->GetBookByID($id);
-      if (!$book){
+      if (!$book)
         header("Location: Books.php");
-      }
     }
     if(isset($_POST["EditBook"]) && isset($_GET["id"])){
       $id = $_GET["id"];
