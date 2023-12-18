@@ -23,7 +23,7 @@
             <h6>Kütüphane</h6>
           </nav>
         </header>
-        <a '.  "21ŞO3KL21LLLLLLLLLLLLLLLLL". ' href="Index.php">
+        <a href="Index.php">
           <i>home</i>
           <div>Ana Sayfa</div>
         </a>
@@ -35,7 +35,7 @@
           <i>person</i>
           <div>Üyeler</div>
         </a>
-        <a>
+        <a href="Stats.php">
           <i>Analytics</i>
           <div>İstatistikler</div>
         </a>
