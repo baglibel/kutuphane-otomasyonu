@@ -1,5 +1,6 @@
 # Kütüphane Otomasyonu
+
 İnternet Programcılığı dersi için yazılmış bir proje.
+PHP 8 ve üstü ile çalışır.
 
-
-### Yazma sürecindeyim.
+### Responsive henüz yapılmamıştır.

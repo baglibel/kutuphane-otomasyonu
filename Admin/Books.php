@@ -39,6 +39,7 @@
       <table class="stripes top-margin">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Adı</th>
             <th>Yazarı</th>
             <th>Sayfa sayısı</th>
@@ -52,6 +53,7 @@
         foreach ($books as $book) {
           $durum = $book->GetState();
             echo "<tr>
+            <td>$book->ID</td>
             <td>$book->Name</td>
             <td>$book->Writer</td>
             <td>$book->NumberOfPages</td>

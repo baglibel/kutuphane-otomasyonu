@@ -97,6 +97,25 @@ class BookService
         $result = $this->conn->execute_query("SELECT COUNT(*) FROM books");
         return $result->fetch_row()[0];
     }
+    function GetAlerts(){
+        $alerts = array();
+        $query = "SELECT * FROM history WHERE EndDate is null";
+        $result = $this->conn->execute_query($query);
+        while ($alert = $result->fetch_assoc()) {
+            $today = new DateTime();
+            $startDate =(new DateTime())->createFromFormat("Y-m-d H:i:s", $alert["StartDate"]);
+            $potentielEndDate = $startDate->modify("+7 days");
+            if($today > $potentielEndDate){
+                $userService = new UserService();
+                $user = $userService->GetUserByID($alert["UserID"]);
+                $book = $this->GetBookByID($alert["BookID"]);
+                $time = $potentielEndDate->diff($today);
+                array_push($alerts, "$user kullanıcısı \"$book->Name - $book->Writer\" kitabını $time->days gün geciktirdi.");
+
+            }
+        }
+        return $alerts;
+    }
 }
 ?>
 

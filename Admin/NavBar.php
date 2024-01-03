@@ -12,7 +12,7 @@
           <div>Admin Ekle</div>
         </a>' : '';
 
-        echo '    <nav class="left drawer">
+        echo '    <nav class="left drawer l">
         <header>
           <nav>
             <img
@@ -39,7 +39,7 @@
           <i>Analytics</i>
           <div>İstatistikler</div>
         </a>
-        <a>
+        <a href="Alerts.php">
           <i>priority_high</i>
           <div>Uyarılar</div>
         </a>

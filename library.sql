@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 18 Ara 2023, 14:46:10
+-- Üretim Zamanı: 03 Oca 2024, 21:25:28
 -- Sunucu sürümü: 10.4.28-MariaDB
 -- PHP Sürümü: 8.2.4
 
@@ -37,6 +37,13 @@ CREATE TABLE `admins` (
   `Rank` int(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Tablo döküm verisi `admins`
+--
+
+INSERT INTO `admins` (`ID`, `Username`, `Password`, `Name`, `Surname`, `Email`, `Rank`) VALUES
+(5, 'admin', '$2y$10$WbgxRBC6hXeT7WwUJqs/XOAjIj/BCLsAn57nqqmJFUBftY1OIY9rC', 'John', 'Doe', 'johndoe@gmail.com', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -60,8 +67,8 @@ CREATE TABLE `books` (
 
 INSERT INTO `books` (`ID`, `Name`, `Writer`, `Cover`, `Description`, `NumberOfPages`, `Publisher`, `IsFree`) VALUES
 (47, 'Bir Kalbin Çöküşü', 'Stefan Zweig', 'https://img.kitapyurdu.com/v1/getImage/fn:6922448/', 'O gece yine karanlık odasında yalnızdı. Yarı uyur, yarı uyanık pinekliyordu. Kalbinin derinliklerinde yaşadığı acılar içinde kargaşa oluşturmuştu. Sessiz ama sıcak bir şeydi. Acı çekmiyordu. Daha önce yaşamadığı tuhaf durum neydi? Kanı titriyordu. Damarlarından akarken damla damla akışını duyuyordu. Tıpkı trenlerin raylar üzerinde yavaş yavaş geçişine benziyordu. Gerip olan bunların hepsi kalbinin içinde yaşanıyordu. Ancak kalp karanlık odalar gibiydi.', 37, 'Karbon Kitaplar', b'0'),
-(51, 'Ay Işığı Sokağı', 'Stefan Zweig', 'https://i.dr.com.tr/cache/600x600-0/originals/0001857114001-1.jpg', 'güzel bir kitap          ', 88, 'Karbon Kitaplar', b'1'),
-(54, 'Olağanüstü Bir Gece', 'Stefan Zweig', 'https://img.kitapyurdu.com/v1/getImage/fn:6340674', 'Ravaruska’da çatışmada hayatını kaybeden Friedrich Michael von R…’nin başından geçen tuhaf olaylar dizgesini içeriyor ‘Olağanüstü Bir Gece’.\r\nStefan  Zweig’in psikolojik tahlilleriyle kılcal damarlarına ineceğiniz kısa öykü, zihin akışları bezeli. Hayatta her şeye sahip birinin, nelere muhtaç olduğunu fark ettiriyor. Kitap, sadece tek bir gecede yaşanan büyülü olaylarla benliğin değişebildiğini haykırıyor.', 63, 'Karbon Kitaplar', b'1');
+(51, 'Ay Işığı Sokağı', 'Stefan Zweig', 'https://i.dr.com.tr/cache/600x600-0/originals/0001857114001-1.jpg', 'Fransa’nın bir liman kentinin denizci mahallesinde gezinirken duyduğu arya söyleyen sesi izleyerek tanımadığı insanların marazi hayatlarına dalan bir gezgin; patronuna kölece bağlılığı yüzünden korkunç bir eyleme sürüklenen karanlık, itici ve yabani bir hizmetçi; 1810 yılında İspanya’daki savaşta yaralanan, düşman bir ülkede amansız bir hayatta kalma mücadelesine girişen bir Fransız albay; 1918 yılının bir yaz gecesi Leman gölünde bulunup kurtarılan, ancak sonra yüreğini kavuran yurt özlemine ye', 88, 'Karbon Kitaplar', b'1'),
+(54, 'Olağanüstü Bir Gece', 'Stefan Zweig', 'https://img.kitapyurdu.com/v1/getImage/fn:6340674', 'Ravaruska’da çatışmada hayatını kaybeden Friedrich Michael von R…’nin başından geçen tuhaf olaylar dizgesini içeriyor ‘Olağanüstü Bir Gece’.\r\nStefan  Zweig’in psikolojik tahlilleriyle kılcal damarlarına ineceğiniz kısa öykü, zihin akışları bezeli. Hayatta her şeye sahip birinin, nelere muhtaç olduğunu fark ettiriyor. Kitap, sadece tek bir gecede yaşanan büyülü olaylarla benliğin değişebildiğini haykırıyor.', 63, 'Karbon Kitaplar', b'0');
 
 -- --------------------------------------------------------
 
@@ -77,6 +84,27 @@ CREATE TABLE `history` (
   `EndDate` timestamp NULL DEFAULT NULL,
   `ResponsibleID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Tablo döküm verisi `history`
+--
+
+INSERT INTO `history` (`ID`, `BookID`, `UserID`, `StartDate`, `EndDate`, `ResponsibleID`) VALUES
+(41, 51, 50, '2024-01-03 19:50:52', '2024-01-03 19:50:58', 5),
+(42, 51, 48, '2024-01-03 19:51:30', '2024-01-03 19:53:42', 5),
+(43, 47, 50, '2024-01-03 19:51:34', '2024-01-03 19:53:42', 5),
+(44, 54, 50, '2024-01-03 19:51:36', '2024-01-03 19:51:39', 5),
+(45, 54, 51, '2024-01-03 19:53:34', '2024-01-03 19:53:41', 5),
+(46, 47, 48, '2024-01-03 19:53:43', '2024-01-03 19:53:44', 5),
+(47, 51, 48, '2024-01-03 19:53:43', '2024-01-03 19:53:44', 5),
+(48, 54, 48, '2024-01-03 19:53:44', '2024-01-03 19:53:45', 5),
+(49, 47, 48, '2024-01-03 19:53:47', '2024-01-03 19:53:52', 5),
+(50, 51, 48, '2024-01-03 19:53:47', '2024-01-03 19:54:05', 5),
+(51, 47, 48, '2024-01-03 19:54:06', '2024-01-03 19:54:13', 5),
+(52, 51, 48, '2024-01-03 19:54:06', '2024-01-03 19:54:16', 5),
+(53, 47, 48, '2024-01-03 19:54:19', '2024-01-03 19:54:21', 5),
+(54, 47, 48, '2021-01-03 19:57:51', NULL, 5),
+(55, 54, 51, '2022-01-03 20:00:46', NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -136,7 +164,7 @@ ALTER TABLE `users`
 -- Tablo için AUTO_INCREMENT değeri `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `books`
@@ -148,7 +176,7 @@ ALTER TABLE `books`
 -- Tablo için AUTO_INCREMENT değeri `history`
 --
 ALTER TABLE `history`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
